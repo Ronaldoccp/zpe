@@ -34,15 +34,14 @@ const Layout: React.FC = () => {
           onClick={() => setSidebarOpen(false)}
         ></div>
 
-        <div className="relative flex-1 flex flex-col max-w-64 w-full pt-5 pb-4 bg-primary-700">
+        <div className="relative flex-1 flex flex-col max-w-64 w-full pt-5 pb-4 bg-maranhao-green">
           <div className="flex items-center justify-between px-4">
             <div className="flex items-center">
               <img
-                className="h-8 w-auto"
+                className="h-10 w-auto"
                 src="/logo.svg"
                 alt="ZPE Bacabeira"
               />
-              <span className="ml-2 text-white font-semibold text-lg">ZPE Bacabeira</span>
             </div>
             <button
               type="button"
@@ -57,20 +56,31 @@ const Layout: React.FC = () => {
           </div>
           <div className="mt-5 flex-1 h-0 overflow-y-auto">
             <nav className="px-2 space-y-1">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`${
-                    location.pathname === item.href
-                      ? 'bg-secondary-700 text-white'
-                      : 'text-white hover:bg-primary-600'
-                  } group flex items-center px-2 py-2 text-base font-medium rounded-md`}
-                >
-                  <item.icon className="mr-4 h-6 w-6 text-white" aria-hidden="true" />
-                  {item.name}
-                </Link>
-              ))}
+              {navigation.map((item, index) => {
+                // Alternando cores conforme a identidade visual do Maranhão
+                const colors = [
+                  'bg-maranhao-red hover:bg-opacity-90', // Vermelho
+                  'bg-maranhao-blue hover:bg-opacity-90', // Azul
+                  'bg-maranhao-green hover:bg-opacity-90', // Verde
+                  'bg-maranhao-yellow hover:bg-opacity-90', // Amarelo
+                ];
+                const activeColor = colors[index % colors.length];
+                const defaultColor = 'bg-opacity-80 hover:bg-opacity-90';
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={`${
+                      location.pathname === item.href
+                        ? activeColor
+                        : defaultColor
+                    } ${colors[index % colors.length]} text-white group flex items-center px-2 py-2 text-base font-medium rounded-md transition-all duration-150`}
+                  >
+                    <item.icon className="mr-4 h-6 w-6 text-white" aria-hidden="true" />
+                    {item.name}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
         </div>
@@ -80,30 +90,51 @@ const Layout: React.FC = () => {
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64">
           <div className="flex flex-col h-0 flex-1">
-            <div className="flex items-center h-16 flex-shrink-0 px-4 bg-secondary-600 bg-gradient-to-r from-primary-700 to-tertiary-700">
+            <div className="flex items-center h-16 flex-shrink-0 px-4 bg-white border-b-2 border-maranhao-green">
               <img
-                className="h-8 w-auto"
+                className="h-12 w-auto"
                 src="/logo.svg"
                 alt="ZPE Bacabeira"
               />
-              <span className="ml-2 text-white font-semibold text-lg">ZPE Bacabeira</span>
             </div>
-            <div className="flex-1 flex flex-col overflow-y-auto bg-primary-700">
+            <div className="flex-1 flex flex-col overflow-y-auto bg-white">
               <nav className="flex-1 px-2 py-4 space-y-1">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`${
-                      location.pathname === item.href
-                        ? 'bg-secondary-700 text-white'
-                        : 'text-white hover:bg-primary-600'
-                    } group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-150`}
-                  >
-                    <item.icon className="mr-3 h-6 w-6 text-white" aria-hidden="true" />
-                    {item.name}
-                  </Link>
-                ))}
+                {navigation.map((item, index) => {
+                  // Alternando cores conforme a identidade visual do Maranhão
+                  const colors = [
+                    'bg-maranhao-red hover:bg-opacity-90 text-white', // Vermelho
+                    'bg-maranhao-blue hover:bg-opacity-90 text-white', // Azul
+                    'bg-maranhao-green hover:bg-opacity-90 text-white', // Verde
+                    'bg-maranhao-yellow hover:bg-opacity-90 text-white', // Amarelo
+                  ];
+                  const defaultColors = [
+                    'text-maranhao-red hover:bg-maranhao-red hover:bg-opacity-10', // Vermelho
+                    'text-maranhao-blue hover:bg-maranhao-blue hover:bg-opacity-10', // Azul
+                    'text-maranhao-green hover:bg-maranhao-green hover:bg-opacity-10', // Verde
+                    'text-maranhao-yellow hover:bg-maranhao-yellow hover:bg-opacity-10', // Amarelo
+                  ];
+                  return (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className={`${
+                        location.pathname === item.href
+                          ? colors[index % colors.length]
+                          : defaultColors[index % defaultColors.length]
+                      } group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-all duration-150`}
+                    >
+                      <item.icon 
+                        className={`mr-3 h-6 w-6 ${
+                          location.pathname === item.href
+                            ? 'text-white'
+                            : defaultColors[index % defaultColors.length].split(' ')[0]
+                        }`} 
+                        aria-hidden="true" 
+                      />
+                      {item.name}
+                    </Link>
+                  );
+                })}
               </nav>
             </div>
           </div>
@@ -125,9 +156,12 @@ const Layout: React.FC = () => {
           </button>
           <div className="flex-1 px-4 flex justify-end">
             <div className="ml-4 flex items-center md:ml-6">
+              <div className="text-sm font-medium text-maranhao-black mr-4">
+                Zona de Processamento de Exportação - Maranhão
+              </div>
               <button
                 type="button"
-                className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500"
+                className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-maranhao-green"
               >
                 <span className="sr-only">Ver notificações</span>
                 <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -137,11 +171,11 @@ const Layout: React.FC = () => {
                 <div>
                   <button
                     type="button"
-                    className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500"
+                    className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-maranhao-green"
                     id="user-menu-button"
                   >
                     <span className="sr-only">Abrir menu de usuário</span>
-                    <UserCircleIcon className="h-8 w-8 text-gray-400" aria-hidden="true" />
+                    <UserCircleIcon className="h-8 w-8 text-maranhao-blue" aria-hidden="true" />
                   </button>
                 </div>
               </div>

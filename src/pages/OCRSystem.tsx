@@ -112,26 +112,26 @@ const OCRSystem: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-900">Sistema OCR</h1>
-      <p className="mt-2 text-gray-600">
+      <h1 className="text-2xl font-semibold text-neutral-900 border-b-2 border-primary-500 pb-2">Sistema OCR</h1>
+      <p className="mt-2 text-neutral-600">
         Digitalização e processamento automático de documentos de importação/exportação
       </p>
 
       {/* Área de upload */}
       <div className="mt-6">
         <div {...getRootProps({
-          className: `max-w-lg mx-auto flex justify-center px-6 pt-5 pb-6 border-2 ${isDragActive ? 'border-primary-500 bg-primary-50' : 'border-gray-300'} border-dashed rounded-md`
+          className: `max-w-lg mx-auto flex justify-center px-6 pt-5 pb-6 border-2 ${isDragActive ? 'border-primary-500 bg-primary-50' : 'border-neutral-300'} border-dashed rounded-md transition duration-150`
         })}>
           <div className="space-y-1 text-center">
-            <DocumentTextIcon className="mx-auto h-12 w-12 text-gray-400" />
-            <div className="flex text-sm text-gray-600">
+            <DocumentTextIcon className="mx-auto h-12 w-12 text-primary-500" />
+            <div className="flex text-sm text-neutral-600">
               <label className="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500">
                 <span>Faça upload de arquivos</span>
                 <input {...getInputProps()} className="sr-only" />
               </label>
               <p className="pl-1">ou arraste e solte</p>
             </div>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-neutral-500">
               PNG, JPG, PDF até 10MB
             </p>
           </div>
@@ -141,75 +141,75 @@ const OCRSystem: React.FC = () => {
       {/* Área de progresso */}
       {processing && (
         <div className="mt-6 max-w-lg mx-auto">
-          <h3 className="text-sm font-medium text-gray-900">Processando: {currentDocument}</h3>
-          <div className="mt-2 w-full bg-gray-200 rounded-full h-2.5">
+          <h3 className="text-sm font-medium text-neutral-900">Processando: {currentDocument}</h3>
+          <div className="mt-2 w-full bg-neutral-200 rounded-full h-2.5">
             <div 
               className="bg-primary-600 h-2.5 rounded-full" 
               style={{ width: `${currentDocumentProgress}%` }}
             ></div>
           </div>
-          <p className="mt-1 text-sm text-gray-500 text-right">{Math.round(currentDocumentProgress)}%</p>
+          <p className="mt-1 text-sm text-neutral-500 text-right">{Math.round(currentDocumentProgress)}%</p>
         </div>
       )}
 
       {/* Lista de documentos processados */}
       {documents.length > 0 && (
         <div className="mt-8">
-          <h2 className="text-lg font-medium text-gray-900">Documentos Processados</h2>
+          <h2 className="text-lg font-medium text-neutral-900 mb-4 border-b border-primary-200 pb-2">Documentos Processados</h2>
           <div className="mt-4 flex flex-col">
             <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                  <table className="min-w-full divide-y divide-gray-300">
-                    <thead className="bg-gray-50">
+                  <table className="min-w-full divide-y divide-neutral-300">
+                    <thead className="bg-neutral-50">
                       <tr>
-                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-neutral-900 sm:pl-6">
                           Nome do Documento
                         </th>
-                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-neutral-900">
                           Status
                         </th>
-                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-neutral-900">
                           Tipo Detectado
                         </th>
-                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-neutral-900">
                           Confiança
                         </th>
-                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-neutral-900">
                           Data de Processamento
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200 bg-white">
+                    <tbody className="divide-y divide-neutral-200 bg-white">
                       {documents.map((doc) => (
-                        <tr key={doc.id}>
-                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                        <tr key={doc.id} className="hover:bg-neutral-50 transition duration-150">
+                          <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-neutral-900 sm:pl-6">
                             {doc.name}
                           </td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm">
                             {doc.status === 'concluído' ? (
-                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                <CheckCircleIcon className="mr-1 h-4 w-4 text-green-400" />
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                                <CheckCircleIcon className="mr-1 h-4 w-4 text-primary-400" />
                                 Concluído
                               </span>
                             ) : doc.status === 'erro' ? (
-                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                <XCircleIcon className="mr-1 h-4 w-4 text-red-400" />
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary-100 text-secondary-800">
+                                <XCircleIcon className="mr-1 h-4 w-4 text-secondary-400" />
                                 Erro
                               </span>
                             ) : (
-                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-tertiary-100 text-tertiary-800">
                                 Processando
                               </span>
                             )}
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-neutral-500">
                             {doc.textContent && extractInfo(doc.textContent).join(', ')}
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-neutral-500">
                             {doc.confidence ? `${Math.round(doc.confidence)}%` : '-'}
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-neutral-500">
                             {doc.dateProcessed.toLocaleString('pt-BR')}
                           </td>
                         </tr>
@@ -226,53 +226,53 @@ const OCRSystem: React.FC = () => {
       {/* Preview e validação de documento */}
       {documents.length > 0 && documents[documents.length - 1].status === 'concluído' && (
         <div className="mt-8 bg-white shadow sm:rounded-lg">
-          <div className="px-4 py-5 sm:p-6">
-            <h3 className="text-lg leading-6 font-medium text-gray-900">
+          <div className="px-4 py-5 sm:p-6 bg-gradient-to-r from-primary-500 to-primary-600">
+            <h3 className="text-lg leading-6 font-medium text-white">
               Validação de Documento
             </h3>
-            <div className="mt-5 border-t border-gray-200">
-              <dl className="divide-y divide-gray-200">
-                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                  <dt className="text-sm font-medium text-gray-500">Nome do arquivo</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {documents[documents.length - 1].name}
-                  </dd>
-                </div>
-                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
-                  <dt className="text-sm font-medium text-gray-500">Conteúdo extraído</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    <div className="max-h-60 overflow-y-auto p-2 bg-gray-50 rounded">
-                      <pre className="whitespace-pre-wrap">{documents[documents.length - 1].textContent}</pre>
-                    </div>
-                  </dd>
-                </div>
-                <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
-                  <dt className="text-sm font-medium text-gray-500">Ações</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    <div className="flex space-x-3">
-                      <button
-                        type="button"
-                        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                      >
-                        Validar e Aprovar
-                      </button>
-                      <button
-                        type="button"
-                        className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                      >
-                        Editar Manualmente
-                      </button>
-                      <button
-                        type="button"
-                        className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-                      >
-                        Rejeitar
-                      </button>
-                    </div>
-                  </dd>
-                </div>
-              </dl>
-            </div>
+          </div>
+          <div className="mt-5 border-t border-neutral-200">
+            <dl className="divide-y divide-neutral-200 px-4 py-5 sm:px-6">
+              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                <dt className="text-sm font-medium text-neutral-500">Nome do arquivo</dt>
+                <dd className="mt-1 text-sm text-neutral-900 sm:mt-0 sm:col-span-2">
+                  {documents[documents.length - 1].name}
+                </dd>
+              </div>
+              <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+                <dt className="text-sm font-medium text-neutral-500">Conteúdo extraído</dt>
+                <dd className="mt-1 text-sm text-neutral-900 sm:mt-0 sm:col-span-2">
+                  <div className="max-h-60 overflow-y-auto p-2 bg-neutral-50 rounded border border-neutral-200">
+                    <pre className="whitespace-pre-wrap">{documents[documents.length - 1].textContent}</pre>
+                  </div>
+                </dd>
+              </div>
+              <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+                <dt className="text-sm font-medium text-neutral-500">Ações</dt>
+                <dd className="mt-1 text-sm text-neutral-900 sm:mt-0 sm:col-span-2">
+                  <div className="flex space-x-3">
+                    <button
+                      type="button"
+                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                    >
+                      Validar e Aprovar
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex items-center px-4 py-2 border border-tertiary-300 text-sm font-medium rounded-md text-tertiary-700 bg-white hover:bg-tertiary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tertiary-500"
+                    >
+                      Editar Manualmente
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex items-center px-4 py-2 border border-secondary-300 text-sm font-medium rounded-md text-secondary-700 bg-white hover:bg-secondary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500"
+                    >
+                      Rejeitar
+                    </button>
+                  </div>
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
       )}

@@ -84,24 +84,24 @@ const BlockchainTraceability: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-900">Sistema de Rastreabilidade Blockchain</h1>
-      <p className="mt-2 text-gray-600">
+      <h1 className="text-2xl font-semibold text-neutral-900 border-b-2 border-primary-500 pb-2">Sistema de Rastreabilidade Blockchain</h1>
+      <p className="mt-2 text-neutral-600">
         Registro imutável e transparente de toda a cadeia logística e documental
       </p>
 
       {/* Área de busca */}
-      <div className="mt-6 bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+      <div className="mt-6 bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 border border-neutral-200">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">Verificação de Documentos</h3>
-            <p className="mt-1 text-sm text-gray-500">
+            <h3 className="text-lg font-medium leading-6 text-neutral-900">Verificação de Documentos</h3>
+            <p className="mt-1 text-sm text-neutral-500">
               Insira o código de rastreio ou hash do documento para verificar sua autenticidade e histórico.
             </p>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6 sm:col-span-4">
-                <label htmlFor="tracking-code" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="tracking-code" className="block text-sm font-medium text-neutral-700">
                   Código de Rastreio / Hash do Documento
                 </label>
                 <div className="mt-1 flex rounded-md shadow-sm">
@@ -109,14 +109,14 @@ const BlockchainTraceability: React.FC = () => {
                     type="text"
                     name="tracking-code"
                     id="tracking-code"
-                    className="flex-1 focus:ring-primary-500 focus:border-primary-500 block w-full min-w-0 rounded-md sm:text-sm border-gray-300"
+                    className="flex-1 focus:ring-tertiary-500 focus:border-tertiary-500 block w-full min-w-0 rounded-md sm:text-sm border-neutral-300"
                     placeholder="Ex: 0x3f8e2a567d91c40b12ae45f..."
                     value={trackingCode}
                     onChange={(e) => setTrackingCode(e.target.value)}
                   />
                   <button
                     type="button"
-                    className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                    className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-tertiary-600 hover:bg-tertiary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tertiary-500 transition duration-150"
                     onClick={handleTrack}
                     disabled={isLoading}
                   >
@@ -139,13 +139,13 @@ const BlockchainTraceability: React.FC = () => {
       {/* Resultado da verificação */}
       {searchPerformed && (
         <div className="mt-8">
-          <div className={`rounded-md p-4 ${certificateValid ? 'bg-green-50' : 'bg-red-50'}`}>
+          <div className={`rounded-md p-4 ${certificateValid ? 'bg-primary-50 border border-primary-200' : 'bg-secondary-50 border border-secondary-200'}`}>
             <div className="flex">
               <div className="flex-shrink-0">
                 {certificateValid ? (
-                  <DocumentCheckIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+                  <DocumentCheckIcon className="h-5 w-5 text-primary-400" aria-hidden="true" />
                 ) : (
-                  <span className="h-5 w-5 flex items-center justify-center rounded-full bg-red-400">
+                  <span className="h-5 w-5 flex items-center justify-center rounded-full bg-secondary-400">
                     <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                     </svg>
@@ -153,12 +153,12 @@ const BlockchainTraceability: React.FC = () => {
                 )}
               </div>
               <div className="ml-3">
-                <h3 className={`text-sm font-medium ${certificateValid ? 'text-green-800' : 'text-red-800'}`}>
+                <h3 className={`text-sm font-medium ${certificateValid ? 'text-primary-800' : 'text-secondary-800'}`}>
                   {certificateValid
                     ? 'Documento verificado com sucesso'
                     : 'Documento não encontrado ou inválido'}
                 </h3>
-                <div className={`mt-2 text-sm ${certificateValid ? 'text-green-700' : 'text-red-700'}`}>
+                <div className={`mt-2 text-sm ${certificateValid ? 'text-primary-700' : 'text-secondary-700'}`}>
                   <p>
                     {certificateValid
                       ? 'O documento é autêntico e foi registrado no blockchain da ZPE Bacabeira.'
@@ -172,45 +172,45 @@ const BlockchainTraceability: React.FC = () => {
           {/* Histórico de transações */}
           {certificateValid && (
             <div className="mt-8 bg-white shadow overflow-hidden sm:rounded-lg">
-              <div className="px-4 py-5 sm:px-6">
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
+              <div className="px-4 py-5 sm:px-6 bg-gradient-to-r from-tertiary-600 to-tertiary-700">
+                <h3 className="text-lg leading-6 font-medium text-white">
                   Histórico de Transações
                 </h3>
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                <p className="mt-1 max-w-2xl text-sm text-tertiary-100">
                   Registros imutáveis de todas as operações relacionadas a este documento.
                 </p>
               </div>
-              <div className="border-t border-gray-200">
-                <ul className="divide-y divide-gray-200">
+              <div className="border-t border-neutral-200">
+                <ul className="divide-y divide-neutral-200">
                   {transactions.map((transaction) => (
-                    <li key={transaction.id} className="px-4 py-4 sm:px-6">
+                    <li key={transaction.id} className="px-4 py-4 sm:px-6 hover:bg-neutral-50 transition duration-150">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
-                          <LinkIcon className="h-5 w-5 text-primary-500 mr-2" />
-                          <p className="text-sm font-medium text-primary-600 truncate">
+                          <LinkIcon className="h-5 w-5 text-tertiary-500 mr-2" />
+                          <p className="text-sm font-medium text-tertiary-600 truncate">
                             {transaction.operation}
                           </p>
                         </div>
                         <div className="ml-2 flex-shrink-0 flex">
-                          <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                          <p className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-primary-100 text-primary-800">
                             Verificado
                           </p>
                         </div>
                       </div>
                       <div className="mt-2 sm:flex sm:justify-between">
                         <div className="sm:flex">
-                          <p className="flex items-center text-sm text-gray-500">
+                          <p className="flex items-center text-sm text-neutral-500">
                             {transaction.actor} - {transaction.document}
                           </p>
                         </div>
-                        <div className="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                        <div className="mt-2 flex items-center text-sm text-neutral-500 sm:mt-0">
                           <p>
                             {formatDateTime(transaction.timestamp)}
                           </p>
                         </div>
                       </div>
                       <div className="mt-2">
-                        <p className="text-xs text-gray-400 font-mono break-all">
+                        <p className="text-xs text-neutral-400 font-mono break-all">
                           Hash: {transaction.hash}
                         </p>
                       </div>
@@ -224,47 +224,47 @@ const BlockchainTraceability: React.FC = () => {
           {/* Visualização do certificado */}
           {certificateValid && (
             <div className="mt-8 bg-white shadow overflow-hidden sm:rounded-lg">
-              <div className="px-4 py-5 sm:px-6">
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
+              <div className="px-4 py-5 sm:px-6 bg-gradient-to-r from-primary-600 to-primary-700">
+                <h3 className="text-lg leading-6 font-medium text-white">
                   Certificado Digital
                 </h3>
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                <p className="mt-1 max-w-2xl text-sm text-primary-100">
                   Certificado de autenticidade registrado no blockchain.
                 </p>
               </div>
-              <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+              <div className="border-t border-neutral-200 px-4 py-5 sm:px-6">
+                <div className="border-2 border-dashed border-neutral-300 rounded-lg p-4 text-center">
                   <div className="flex justify-center mb-4">
                     <div className="h-12 w-12 rounded-full bg-primary-100 flex items-center justify-center">
                       <DocumentCheckIcon className="h-6 w-6 text-primary-600" />
                     </div>
                   </div>
-                  <h4 className="text-lg font-bold text-gray-900">Certificado de Origem</h4>
-                  <p className="mt-1 text-sm text-gray-500">
+                  <h4 className="text-lg font-bold text-neutral-900">Certificado de Origem</h4>
+                  <p className="mt-1 text-sm text-neutral-500">
                     Documento certificado pela ZPE Bacabeira
                   </p>
-                  <div className="mt-4 text-sm text-gray-500">
-                    <div className="flex justify-between py-2 border-b border-gray-200">
+                  <div className="mt-4 text-sm text-neutral-500">
+                    <div className="flex justify-between py-2 border-b border-neutral-200">
                       <span>ID do Certificado:</span>
                       <span className="font-medium">#A7890</span>
                     </div>
-                    <div className="flex justify-between py-2 border-b border-gray-200">
+                    <div className="flex justify-between py-2 border-b border-neutral-200">
                       <span>Data de Emissão:</span>
                       <span className="font-medium">26/09/2023</span>
                     </div>
-                    <div className="flex justify-between py-2 border-b border-gray-200">
+                    <div className="flex justify-between py-2 border-b border-neutral-200">
                       <span>Emissor:</span>
                       <span className="font-medium">Autoridade Certificadora</span>
                     </div>
-                    <div className="flex justify-between py-2 border-b border-gray-200">
+                    <div className="flex justify-between py-2 border-b border-neutral-200">
                       <span>Status:</span>
-                      <span className="font-medium text-green-600">Ativo</span>
+                      <span className="font-medium text-primary-600">Ativo</span>
                     </div>
                   </div>
                   <div className="mt-6">
                     <button
                       type="button"
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-secondary-600 hover:bg-secondary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition duration-150"
                     >
                       Verificar Assinatura Digital
                     </button>
