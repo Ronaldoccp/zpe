@@ -63,11 +63,11 @@ const Layout: React.FC = () => {
                   to={item.href}
                   className={`${
                     location.pathname === item.href
-                      ? 'bg-primary-800 text-white'
+                      ? 'bg-secondary-700 text-white'
                       : 'text-white hover:bg-primary-600'
                   } group flex items-center px-2 py-2 text-base font-medium rounded-md`}
                 >
-                  <item.icon className="mr-4 h-6 w-6 text-primary-300" aria-hidden="true" />
+                  <item.icon className="mr-4 h-6 w-6 text-white" aria-hidden="true" />
                   {item.name}
                 </Link>
               ))}
@@ -80,7 +80,7 @@ const Layout: React.FC = () => {
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64">
           <div className="flex flex-col h-0 flex-1">
-            <div className="flex items-center h-16 flex-shrink-0 px-4 bg-primary-700">
+            <div className="flex items-center h-16 flex-shrink-0 px-4 bg-secondary-600 bg-gradient-to-r from-primary-700 to-tertiary-700">
               <img
                 className="h-8 w-auto"
                 src="/logo.svg"
@@ -96,11 +96,11 @@ const Layout: React.FC = () => {
                     to={item.href}
                     className={`${
                       location.pathname === item.href
-                        ? 'bg-primary-800 text-white'
+                        ? 'bg-secondary-700 text-white'
                         : 'text-white hover:bg-primary-600'
-                    } group flex items-center px-2 py-2 text-sm font-medium rounded-md`}
+                    } group flex items-center px-2 py-2 text-sm font-medium rounded-md transition-colors duration-150`}
                   >
-                    <item.icon className="mr-3 h-6 w-6 text-primary-300" aria-hidden="true" />
+                    <item.icon className="mr-3 h-6 w-6 text-white" aria-hidden="true" />
                     {item.name}
                   </Link>
                 ))}
@@ -127,7 +127,7 @@ const Layout: React.FC = () => {
             <div className="ml-4 flex items-center md:ml-6">
               <button
                 type="button"
-                className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500"
               >
                 <span className="sr-only">Ver notificações</span>
                 <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -137,7 +137,7 @@ const Layout: React.FC = () => {
                 <div>
                   <button
                     type="button"
-                    className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                    className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500"
                     id="user-menu-button"
                   >
                     <span className="sr-only">Abrir menu de usuário</span>
